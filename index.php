@@ -21,14 +21,14 @@ function loadAJAX(cat)
 {
 	//AJAX connection will go here
     // alert('cat is: ' + cat);
-	$.ajax();
+	$.ajax({
 	type: "GET",
 	dataType: "json",
 	url: "api.php?cat=" + cat,
-	sucess:
+	sucess: bondJSON
 
 
-
+	});
 }
     
 function toConsole(data)
