@@ -1,10 +1,10 @@
 <html>
 <head>
-<title>Bond Web Service Demo</title>
+<title>Video Game Web Service Demo</title>
 <style>
 body {font-family:georgia;}
 
-	.film{
+	.game{
 		border:1px solid #E77DC2;
 		border-radius: 5px;
 		padding: 5px;
@@ -40,7 +40,11 @@ function loadAJAX(cat)
 	type: "GET",
 	dataType: "json",
 	url: "api.php?cat=" + cat,
-	sucess: bondJSON
+	sucess: bondJSON,
+	error:function(xhr,status,error){
+		let errorMessage = xhr.status + ': ' + xhr.statusText
+		alert('Error - ' + errorMessage);
+	}
 
 
 	});
@@ -51,44 +55,56 @@ function toConsole(data)
 	console.log(data); //to view,use Chrome console, ctrl + shift + j
 }
 
+
+
+
+
 function bondJSON(data){
 //JSON processing data goes here
 console.log(data);
 
 //identifys the type of data returned
 $('#filmtitle').html(data.title);
+$('#films').html('');
 
-$.each(data.films,function(i,item){
-	let myFilm = bondTemplate(item);
-	$('<div></div>').html(myFilm).appendTo('#films');
+$.each(data.games,function(i,item){
+	let myGame = bondTemplate(item);
+	$('<div></div>').html(myGame).appendTo('#films');
 });
 // $('# output').text(JSON.stringify(data));
 
 //this creates a map of the json on our page
-// let myData= JSON.stringify(data, null, 4);
-// myData = "<pre>" + myData + "<pre>";
-// $("#output").html(myData);
 
-
+	let myData= JSON.stringify(data, null, 4);
+	myData = "<pre>" + myData + "<pre>";
+	$("#output").html(myData);
 
 }
-function bondTemplate(film){
+function bondTemplate(game){
 
-
-
+	// return `
+	// // <div class="film">
+	// // 	<b>Film: </b>${film.Film}<br/>
+	// // 	<b>Title: </b>${film.Title}<br/>
+	// // 	<b>Year: </b>${film.Year}<br/>
+	// // 	<b>Director: </b> ${film.Director}<br/>
+	// // 	<b>Producers: </b> ${film.Producers}<br/>
+	// // 	<b>Writers: </b> ${film.Writers} <br/>
+	// // 	<b>Composer: </b> ${film.Composer} <br/>
+	// // 	<b>Bond: </b> ${film.Bond} <br/>
+	// // 	<b>Budget: </b> ${film.Budget}<br/>
+	// // 	<b>BoxOffice: </b> ${film.BoxOffice} <br/>
+	// // 	<div class="pic"><img src="thumbnails/${film.Image}/></div>
+	// </div>
+	// `;
 	return `
-	<div class="film">
-		<b>Film: </b>${film.Film}<br/>
-		<b>Title: </b>${film.Title}<br/>
-		<b>Year: </b>${film.Year}<br/>
-		<b>Director: </b> ${film.Director}<br/>
-		<b>Producers: </b> ${film.Producers}<br/>
-		<b>Writers: </b> ${film.Writers} <br/>
-		<b>Composer: </b> ${film.Composer} <br/>
-		<b>Bond: </b> ${film.Bond} <br/>
-		<b>Budget: </b> ${film.Budget}<br/>
-		<b>BoxOffice: </b> ${film.BoxOffice} <br/>
-		<div class="pic"><img src="thumbnails/${film.Image}/></div>
+	<div class="game">
+		<b>Title: </b>${game.Title}<br/>
+		<b>Genre: </b>${game.Genre}<br/>
+		<b>Company: </b>${game.company}<br/>
+		<b>Year: </b>${game.Year}<br/>
+		<b>Rating: </b>${game.Rating}<br/>
+		<div class="pic"<img src="thumbnails/${game.image}"/></div>
 	</div>
 	`;
 }
@@ -113,7 +129,7 @@ function bondTemplate(film){
 				<b>Budget: </b> $1,000,000.00 <br/>
 				<b>BoxOffice: </b> $59,567,035.00 <br/>
 				<div class="pic"><img src="thumbnails/dr-no.jpg"/></div> -->
-			</div>
+			<!-- </div> -->
 		</div>
 		<div id="output">Results go here</div>
 	</body>
