@@ -107,7 +107,7 @@ function bondTemplate(game){
 		<a href="year" class="category">Video Games By Year</a><br />
 		<a href="title" class="category">Video Games By Title</a>
 		<h3 id="filmtitle">Title Will Go Here</h3>
-		<div id="films">
+		<div id="game">
 			<!-- <div class="film">
 				<b>Film: </b> 1 <br/>
 				<b>Title: </b> Dr. No <br/>
