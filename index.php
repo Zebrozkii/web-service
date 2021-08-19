@@ -46,7 +46,6 @@ function loadAJAX(cat)
 		alert('Error - ' + errorMessage);
 	}
 
-
 	});
 }
     
@@ -56,29 +55,21 @@ function toConsole(data)
 }
 
 
-
-
-
 function bondJSON(data){
 //JSON processing data goes here
 console.log(data);
-
 //identifys the type of data returned
 $('#filmtitle').html(data.title);
 $('#films').html('');
-
 $.each(data.games,function(i,item){
 	let myGame = bondTemplate(item);
 	$('<div></div>').html(myGame).appendTo('#films');
 });
 // $('# output').text(JSON.stringify(data));
-
 //this creates a map of the json on our page
-
 	let myData= JSON.stringify(data, null, 4);
 	myData = "<pre>" + myData + "<pre>";
 	$("#output").html(myData);
-
 }
 function bondTemplate(game){
 
@@ -113,8 +104,8 @@ function bondTemplate(game){
 </head>
 	<body>
 	<h1>Bond Web Service</h1>
-		<a href="year" class="category">Bond Films By Year</a><br />
-		<a href="box" class="category">Bond Films By International Box Office Totals</a>
+		<a href="year" class="category">Video Games By Year</a><br />
+		<a href="title" class="category">Video Games By Title</a>
 		<h3 id="filmtitle">Title Will Go Here</h3>
 		<div id="films">
 			<!-- <div class="film">
